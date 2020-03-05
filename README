@@ -1,0 +1,15 @@
+1. installation
+    request module is needed, can be installed by
+    pip install request
+
+2. usage
+    python3 downloader.py url -c nThreads
+
+3. design choice
+    Using multithread to dowanload file in multiple chunk concurrently.
+    Checking status code from first head request to see if the url is invalid
+    The bottle neck will be the disk IO speed and the network connection.
+    Network disconnection is detected by checking the content-length of response. 
+    If it does not match, maximum of 3 retries will be performed.
+    This version is not that scalable since for large file, computer memory needed for storing that temporarily is huge.
+
